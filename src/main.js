@@ -9,6 +9,8 @@ import VueAxios from 'vue-axios'
  
 Vue.use(VueAxios, axios)
 
+axios.defaults.baseURL = "http://lararest.test/api";
+
 Vue.config.productionTip = false
 
 new Vue({
