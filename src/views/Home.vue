@@ -1,7 +1,14 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <label for="">Email</label>
+    <br>
+    <input type="text" v-model="user.email">
+    <br>
+    <label for="">Password</label>
+    <br>
+    <input type="password" v-model="user.password">
+    <br>
+    <button @click="login">Login</button>
   </div>
 </template>
 
@@ -13,6 +20,27 @@ export default {
   name: 'home',
   components: {
     HelloWorld
+  },
+  data() {
+    return {
+      user: {
+        email : '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    login() {
+      Vue.axios.post('/auth/login', 
+        {
+          email: this.user.email,
+          password: this.user.password
+        }
+      )
+      .then(res => {
+        console.log(res.data)
+      })
+    }
   }
 }
 </script>
